@@ -4,6 +4,16 @@ use strict;
 use warnings;
 use Term::Menu;
 
+my $DiskReadBytes=60000;
+my $NetworkOut=15000000;
+my $DiskReadOps=100.0;
+my $NetworkIn=10000000.0;
+my $DiskReadOps=100.0;
+my $DiskReadOps=100.0;
+my $DiskReadOps=100.0;
+
+
+
 my $menu = new Term::Menu;
 my $answer = $menu->menu(
       ec2    => ["Setup CloudWatch metrics and alarm for EC2", '1'],
