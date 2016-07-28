@@ -14,7 +14,16 @@ my $CPUUtilization=70;
 #RDS thresholds
 my $ReadLatency=0.0030000000000000001;
 my $DatabaseConnections=400.0;
-
+my $NetworkTransmitThroughput=400.0;
+my $WriteThroughput=15000000.0;
+my $ReadIOPS=100.0;
+my $FreeStorageSpace=10000000000.0;
+my $SwapUsage=100000000.0;
+my $FreeableMemory=200000000.0;
+my $DiskQueueDepth=2.0;
+my $WriteLatency=2.0;
+my $NetworkReceiveThroughput=500000.0;
+my $WriteIOPS=2000.0;
 
 my $menu = new Term::Menu;
 my $answer = $menu->menu(
