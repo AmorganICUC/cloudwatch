@@ -4,14 +4,16 @@ use strict;
 use warnings;
 use Term::Menu;
 
+#EC2 thresholds 
 my $DiskReadBytes=60000;
 my $NetworkOut=15000000;
 my $DiskReadOps=100.0;
 my $NetworkIn=10000000.0;
-my $DiskReadOps=100.0;
-my $DiskReadOps=100.0;
-my $DiskReadOps=100.0;
+my $CPUUtilization=70;
 
+#RDS thresholds
+my $ReadLatency=0.0030000000000000001;
+my $DatabaseConnections=400.0;
 
 
 my $menu = new Term::Menu;
