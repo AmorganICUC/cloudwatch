@@ -1,0 +1,9 @@
+###This script can be run interactively and non-interactively, 
+
+	##Running interactively:
+
+	Simply execute the script from command line from within the /scripts directory #perl cloudwatch.pl or #perl /scripts/cloudwatch.pl. A menu will popup and ask questions.
+
+	##Running non-interactively
+	The script accepts 2 arguments cloudwatch(rds dbidentifier) or cloudwatch(ec2 deviceid) , so on the sysadmin box, pass the command perl /scripts/cloudwatch.pl <rds> <dbidentifier> or perl /scripts/cloudwatch.pl <ec2> <deviceid>
+

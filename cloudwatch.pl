@@ -2,14 +2,17 @@
 #!/usr/bin/perl
 
 ###Script accepts 2 values to be run non-interactively 'cloudwatch.pl <rds> <dbidetifier>' or 'cloudwatch.pl <ec2> <deviceid>'
-
+###See Readme file for more details
 
 use strict;
 use warnings;
 use Term::Menu;
 
+<<<<<<< HEAD
 my($alrminstanceid,$dbidentifier);
 
+=======
+>>>>>>> 65c043cb085847c773edf62ccc1883493cffcb04
 #EC2 thresholds 
 my $DiskReadBytes=60000;
 my $NetworkOut=15000000;
@@ -31,6 +34,7 @@ my $WriteLatency=2.0;
 my $NetworkReceiveThroughput=500000.0;
 my $WriteIOPS=2000.0;
 
+<<<<<<< HEAD
 my $num=$#ARGV + 1;
 
 if($num == 2)
@@ -67,6 +71,8 @@ my $answers= shift;
                         }
 
 MENU:
+=======
+>>>>>>> 65c043cb085847c773edf62ccc1883493cffcb04
 my $menu = new Term::Menu;
 my $answer = $menu->menu(
       ec2    => ["Setup CloudWatch metrics and alarm for EC2", '1'],
@@ -118,7 +124,11 @@ sub rds {
 
 print"Enter the RDS DBInstanceIdentifier...e.g(icuc-test-rds-1)\n";
 
+<<<<<<< HEAD
 chomp($dbidentifier=<>);
+=======
+chomp(my $dbidentifier=<>);
+>>>>>>> 65c043cb085847c773edf62ccc1883493cffcb04
 system qq{aws cloudwatch put-metric-alarm --alarm-name $dbidentifier-ReadLatency --alarm-description "Monitor ReadLatency for RDS " --metric-name ReadLatency --namespace AWS/RDS --statistic Average --period 300 --threshold $ReadLatency --comparison-operator GreaterThanOrEqualToThreshold  --dimensions "Name=DBInstanceIdentifier,Value=$dbidentifier" --evaluation-periods 3 --alarm-actions arn:aws:sns:us-west-2:484505395026:TechSupport_Alert};
 sleep(5);
 system qq{aws cloudwatch put-metric-alarm --alarm-name $dbidentifier-DatabaseConnections --alarm-description "Monitor DatabaseConnections for RDS " --metric-name DatabaseConnections --namespace AWS/RDS --statistic Average --period 300 --threshold $DatabaseConnections --comparison-operator GreaterThanOrEqualToThreshold  --dimensions "Name=DBInstanceIdentifier,Value=$dbidentifier" --evaluation-periods 3 --alarm-actions arn:aws:sns:us-west-2:484505395026:TechSupport_Alert};
