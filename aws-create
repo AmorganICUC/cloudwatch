@@ -1,0 +1,46 @@
+#!/usr/bin/perl
+ 
+use warnings;
+use strict;
+
+### ####### aws-create <image-id> <count> <instance-type> <key-name> <security-group> <subnet-id> <availability-Zone> <name of server>
+##example:  aws-create ami-10eb2070 3 t2.micro icuc-aws-hosts-production sg-b512f5d3 subnet-a88f36cc us-west-2b testingServer 
+
+my ($availzone,$name,$line,@arin,$image,$count,$instance,$key,$sg,$subnet);
+
+my $iteration_number = 1;
+$image=$ARGV[0];
+$count=$ARGV[1];
+$instance=$ARGV[2];
+$key=$ARGV[3];
+$sg=$ARGV[4];
+$subnet=$ARGV[5];
+$availzone=$ARGV[6];
+$name=$ARGV[7];
+
+chomp(@ARGV);
+
+	my $num=$#ARGV + 1;
+	if ( $num == 8 )
+	{
+	
+	@arin=`aws ec2  run-instances --image-id $image --count $count --instance-type $instance --key-name $key --security-group-ids $sg --subnet-id $subnet --placement AvailabilityZone=$availzone`;
+
+		foreach $line (@arin)
+        	{
+
+                	while ($line =~ /\s+ "InstanceId": \s "(.*?)"/mgx)
+                	{
+	
+        	       		system("aws ec2 create-tags --resources $1 --tags Key=Name,Value=$name-$iteration_number");
+				$iteration_number ++;
+
+		  	 }
+
+        	}
+
+	}
+		else
+		{
+		print"The script accepts 7 values \n";
+		}
